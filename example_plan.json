@@ -1,0 +1,57 @@
+{
+  "resource_changes": [
+    {
+      "address": "aws_db_instance.main",
+      "type": "aws_db_instance",
+      "change": {
+        "actions": [
+          "delete"
+        ],
+        "before": {
+          "engine": "postgres"
+        },
+        "after": null
+      }
+    },
+    {
+      "address": "aws_security_group.bastion",
+      "type": "aws_security_group",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "ingress": [
+            {
+              "from_port": 22,
+              "to_port": 22,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ],
+              "ipv6_cidr_blocks": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "address": "aws_instance.web",
+      "type": "aws_instance",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "tags": {}
+        },
+        "after": {
+          "tags": {
+            "env": "dev"
+          }
+        }
+      }
+    }
+  ]
+}
